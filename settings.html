@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - ExpenseX</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #080b14;
+            color: white;
+        }
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 250px;
+            background: #0e1220;
+            border-right: 1px solid rgba(255,255,255,0.06);
+            padding: 25px 15px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 12px;
+            margin-bottom: 35px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#8b5cf6,#6366f1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo h2 {
+            font-size: 21px;
+        }
+
+        .logo small {
+            display: block;
+            color: #7f879e;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .menu-title {
+            color: #656d83;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin: 20px 12px 10px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 14px;
+            margin: 5px 0;
+            border-radius: 12px;
+            color: #9299ad;
+            text-decoration: none;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(139,92,246,0.15);
+            color: white;
+        }
+
+        .nav-icon {
+            width: 22px;
+            text-align: center;
+        }
+
+        /* MAIN */
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 25px 30px;
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .topbar h1 {
+            font-size: 28px;
+        }
+
+        .topbar p {
+            color: #7f879e;
+            margin-top: 6px;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bell {
+            width: 42px;
+            height: 42px;
+            background: #111625;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg,#8b5cf6,#6366f1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* SETTINGS */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: #111522;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 19px;
+            margin-bottom: 7px;
+        }
+
+        .card-subtitle {
+            color: #737b91;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #aeb4c5;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 13px 15px;
+            background: #0b0f1a;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            color: white;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .input:focus {
+            border-color: #8b5cf6;
+        }
+
+        .save-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg,#8b5cf6,#6366f1);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .save-btn:hover {
+            opacity: 0.9;
+        }
+
+        .message {
+            color: #55d887;
+            font-size: 13px;
+            margin-top: 12px;
+            display: none;
+        }
+
+        /* OPTION */
+        .option-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .option-row:last-child {
+            border-bottom: none;
+        }
+
+        .option-info strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .option-info small {
+            color: #737b91;
+            font-size: 12px;
+        }
+
+        select {
+            background: #0b0f1a;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 9px;
+            padding: 10px;
+            outline: none;
+        }
+
+        /* DANGER */
+        .danger-card {
+            border-color: rgba(239,68,68,0.18);
+        }
+
+        .danger-card h2 {
+            color: #ff7777;
+        }
+
+        .danger-btn {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(239,68,68,0.35);
+            border-radius: 10px;
+            background: rgba(239,68,68,0.08);
+            color: #ff7777;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .danger-btn:hover {
+            background: rgba(239,68,68,0.15);
+        }
+
+        .info-box {
+            background: rgba(139,92,246,0.08);
+            border: 1px solid rgba(139,92,246,0.15);
+            border-radius: 15px;
+            padding: 18px;
+            margin-top: 20px;
+        }
+
+        .info-box h3 {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: #838ba0;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* MOBILE */
+        @media(max-width: 900px) {
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width: 700px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: 0.3s;
+                z-index: 100;
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px 15px;
+            }
+
+            .mobile-menu {
+                display: block;
+                background: #111522;
+                border: none;
+                color: white;
+                padding: 10px 13px;
+                border-radius: 10px;
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+
+            .profile {
+                display: none;
+            }
+
+            .topbar h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">₹</div>
+
+            <div>
+                <h2>ExpenseX</h2>
+                <small>Personal Finance</small>
+            </div>
+        </div>
+
+        <div class="menu-title">Main Menu</div>
+
+        <a href="dashboard.html" class="nav-link">
+            <span class="nav-icon">⌂</span>
+            Dashboard
+        </a>
+
+        <a href="expenses.html" class="nav-link">
+            <span class="nav-icon">💸</span>
+            Expenses
+        </a>
+
+        <a href="income.html" class="nav-link">
+            <span class="nav-icon">💰</span>
+            Income
+        </a>
+
+        <a href="budget.html" class="nav-link">
+            <span class="nav-icon">🎯</span>
+            Budget
+        </a>
+
+        <div class="menu-title">Analytics</div>
+
+        <a href="reports.html" class="nav-link">
+            <span class="nav-icon">📊</span>
+            Reports
+        </a>
+
+        <a href="categories.html" class="nav-link">
+            <span class="nav-icon">🏷️</span>
+            Categories
+        </a>
+
+        <div class="menu-title">Other</div>
+
+        <a href="settings.html" class="nav-link active">
+            <span class="nav-icon">⚙️</span>
+            Settings
+        </a>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <button class="mobile-menu" id="mobileMenu">
+            ☰
+        </button>
+
+        <div class="topbar">
+
+            <div>
+                <h1>Settings ⚙️</h1>
+
+                <p>
+                    Manage your ExpenseX preferences.
+                </p>
+            </div>
+
+            <div class="profile">
+
+                <div class="bell">
+                    🔔
+                </div>
+
+                <div class="avatar">
+                    T
+                </div>
+
+                <div>
+                    <strong id="topName">Tejas</strong>
+
+                    <small
+                        style="display:block;color:#737b91;"
+                    >
+                        Personal Account
+                    </small>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-grid">
+
+            <!-- LEFT -->
+            <div>
+
+                <!-- PROFILE -->
+                <div class="card">
+
+                    <h2>Profile</h2>
+
+                    <p class="card-subtitle">
+                        Update your personal information.
+                    </p>
+
+                    <form id="profileForm">
+
+                        <div class="form-group">
+
+                            <label>
+                                Your Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nameInput"
+                                class="input"
+                                placeholder="Enter your name"
+                                value="Tejas"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Account Type
+                            </label>
+
+                            <input
+                                type="text"
+                                id="accountInput"
+                                class="input"
+                                placeholder="Account type"
+                                value="Personal Account"
+                            >
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="save-btn"
+                        >
+                            Save Profile
+                        </button>
+
+                        <div
+                            class="message"
+                            id="profileMessage"
+                        >
+                            Profile saved successfully!
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- PREFERENCES -->
+                <div class="card">
+
+                    <h2>Preferences</h2>
+
+                    <p class="card-subtitle">
+                        Customize how ExpenseX works.
+                    </p>
+
+
+                    <div class="option-row">
+
+                        <div class="option-info">
+
+                            <strong>
+                                Currency
+                            </strong>
+
+                            <small>
+                                Currency used throughout the app
+                            </small>
+
+                        </div>
+
+                        <select id="currencySelect">
+
+                            <option value="INR">
+                                ₹ INR
+                            </option>
+
+                            <option value="USD">
+                                $ USD
+                            </option>
+
+                            <option value="EUR">
+                                € EUR
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="option-row">
+
+                        <div class="option-info">
+
+                            <strong>
+                                Appearance
+                            </strong>
+
+                            <small>
+                                Current application theme
+                            </small>
+
+                        </div>
+
+                        <select id="themeSelect">
+
+                            <option value="dark">
+                                Dark
+                            </option>
+
+                            <option value="light">
+                                Light
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT -->
+            <div>
+
+                <!-- DATA -->
+                <div class="card">
+
+                    <h2>Data Management</h2>
+
+                    <p class="card-subtitle">
+                        Manage your ExpenseX stored data.
+                    </p>
+
+
+                    <div class="option-row">
+
+                        <div class="option-info">
+
+                            <strong>
+                                Expense Records
+                            </strong>
+
+                            <small id="expenseCount">
+                                0 records
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="option-row">
+
+                        <div class="option-info">
+
+                            <strong>
+                                Income Records
+                            </strong>
+
+                            <small id="incomeCount">
+                                0 records
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+<h3>
+    💾 Database Storage
+</h3>
+
+<p>
+    Your expense, income and budget data
+    are stored in the SQLite database.
+    Profile and application preferences
+    are stored locally in your browser.
+</p>                   
+ </div>
+
+                </div>
+
+
+                <!-- DANGER -->
+                <div class="card danger-card">
+
+                    <h2>Reset Data</h2>
+
+                    <p class="card-subtitle">
+                        Permanently remove your current
+                        ExpenseX data from this browser.
+                    </p>
+
+                    <button
+                        class="danger-btn"
+                        id="resetButton"
+                    >
+                        🗑️ Clear All Data
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+const API_URL = "http://localhost:3000";
+
+
+// =====================================================
+// LOAD SETTINGS
+// =====================================================
+
+const savedName =
+    localStorage.getItem("expenseXName") ||
+    "Tejas";
+
+const savedAccount =
+    localStorage.getItem("expenseXAccount") ||
+    "Personal Account";
+
+const savedCurrency =
+    localStorage.getItem("expenseXCurrency") ||
+    "INR";
+
+const savedTheme =
+    localStorage.getItem("expenseXTheme") ||
+    "dark";
+
+
+// Set profile values
+document.getElementById("nameInput").value =
+    savedName;
+
+document.getElementById("accountInput").value =
+    savedAccount;
+
+document.getElementById("currencySelect").value =
+    savedCurrency;
+
+document.getElementById("themeSelect").value =
+    savedTheme;
+
+document.getElementById("topName").textContent =
+    savedName;
+
+
+// =====================================================
+// LOAD DATABASE RECORD COUNTS
+// =====================================================
+
+async function loadRecordCounts() {
+
+    try {
+
+        // Get expenses from SQLite
+        const expenseResponse =
+            await fetch(`${API_URL}/expenses`);
+
+
+        if (!expenseResponse.ok) {
+            throw new Error("Could not load expenses");
+        }
+
+
+        const expenses =
+            await expenseResponse.json();
+
+
+        // Get income from SQLite
+        const incomeResponse =
+            await fetch(`${API_URL}/income`);
+
+
+        if (!incomeResponse.ok) {
+            throw new Error("Could not load income");
+        }
+
+
+        const incomes =
+            await incomeResponse.json();
+
+
+        // Display expense count
+        document.getElementById(
+            "expenseCount"
+        ).textContent =
+            expenses.length +
+            (
+                expenses.length === 1
+                    ? " record"
+                    : " records"
+            );
+
+
+        // Display income count
+        document.getElementById(
+            "incomeCount"
+        ).textContent =
+            incomes.length +
+            (
+                incomes.length === 1
+                    ? " record"
+                    : " records"
+            );
+
+
+    } catch (error) {
+
+        console.error(
+            "Record count error:",
+            error
+        );
+
+
+        document.getElementById(
+            "expenseCount"
+        ).textContent =
+            "Could not load";
+
+
+        document.getElementById(
+            "incomeCount"
+        ).textContent =
+            "Could not load";
+
+    }
+
+}
+
+
+// =====================================================
+// PROFILE SAVE
+// =====================================================
+
+document
+    .getElementById("profileForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document
+                    .getElementById("nameInput")
+                    .value
+                    .trim();
+
+
+            const account =
+                document
+                    .getElementById("accountInput")
+                    .value
+                    .trim();
+
+
+            localStorage.setItem(
+                "expenseXName",
+                name || "Tejas"
+            );
+
+
+            localStorage.setItem(
+                "expenseXAccount",
+                account || "Personal Account"
+            );
+
+
+            document.getElementById(
+                "topName"
+            ).textContent =
+                name || "Tejas";
+
+
+            const message =
+                document.getElementById(
+                    "profileMessage"
+                );
+
+
+            message.textContent =
+                "Profile saved successfully!";
+
+
+            message.style.display =
+                "block";
+
+
+            setTimeout(
+                () => {
+
+                    message.style.display =
+                        "none";
+
+                },
+                2500
+            );
+
+        }
+    );
+
+
+// =====================================================
+// CURRENCY
+// =====================================================
+
+document
+    .getElementById("currencySelect")
+    .addEventListener(
+        "change",
+        function() {
+
+            localStorage.setItem(
+                "expenseXCurrency",
+                this.value
+            );
+
+        }
+    );
+
+
+// =====================================================
+// THEME
+// =====================================================
+
+document
+    .getElementById("themeSelect")
+    .addEventListener(
+        "change",
+        function() {
+
+            localStorage.setItem(
+                "expenseXTheme",
+                this.value
+            );
+
+
+            if (this.value === "light") {
+
+                alert(
+                    "Light theme preference saved. Full light-theme support can be added later."
+                );
+
+            }
+
+        }
+    );
+
+
+// =====================================================
+// RESET ALL DATABASE DATA
+// =====================================================
+
+document
+    .getElementById("resetButton")
+    .addEventListener(
+        "click",
+        async function() {
+
+
+            const confirmReset =
+                confirm(
+                    "Are you sure you want to delete all ExpenseX income, expense and budget data?"
+                );
+
+
+            if (!confirmReset) {
+                return;
+            }
+
+
+            try {
+
+                // -----------------------------------------
+                // DELETE ALL EXPENSES
+                // -----------------------------------------
+
+                const expenseResponse =
+                    await fetch(
+                        `${API_URL}/expenses`,
+                        {
+                            method: "DELETE"
+                        }
+                    );
+
+
+                if (!expenseResponse.ok) {
+
+                    throw new Error(
+                        "Could not delete expenses"
+                    );
+
+                }
+
+
+                // -----------------------------------------
+                // DELETE ALL INCOME
+                // -----------------------------------------
+
+                const incomeResponse =
+                    await fetch(
+                        `${API_URL}/income`,
+                        {
+                            method: "DELETE"
+                        }
+                    );
+
+
+                if (!incomeResponse.ok) {
+
+                    throw new Error(
+                        "Could not delete income"
+                    );
+
+                }
+
+
+                // -----------------------------------------
+                // RESET BUDGET
+                // -----------------------------------------
+
+                const budgetResponse =
+                    await fetch(
+                        `${API_URL}/budget`,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                amount: 0
+                            })
+                        }
+                    );
+
+
+                if (!budgetResponse.ok) {
+
+                    throw new Error(
+                        "Could not reset budget"
+                    );
+
+                }
+
+
+                // Remove old localStorage financial data
+                localStorage.removeItem(
+                    "expenseXExpenses"
+                );
+
+                localStorage.removeItem(
+                    "incomeData"
+                );
+
+                localStorage.removeItem(
+                    "monthlyBudget"
+                );
+
+
+                alert(
+                    "All financial data has been cleared successfully."
+                );
+
+
+                // Reload page
+                location.reload();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Reset data error:",
+                    error
+                );
+
+
+                alert(
+                    "Could not reset data. Make sure server.js is running."
+                );
+
+            }
+
+        }
+    );
+
+
+// =====================================================
+// MOBILE MENU
+// =====================================================
+
+document
+    .getElementById("mobileMenu")
+    .addEventListener(
+        "click",
+        function() {
+
+            document
+                .getElementById("sidebar")
+                .classList.toggle("show");
+
+        }
+    );
+
+
+// =====================================================
+// START SETTINGS PAGE
+// =====================================================
+
+loadRecordCounts();
+
+</script>
+
+</body>
+</html>

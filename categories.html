@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Categories - ExpenseX</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #080b14;
+            color: white;
+        }
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 250px;
+            background: #0e1220;
+            border-right: 1px solid rgba(255,255,255,0.06);
+            padding: 25px 15px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 12px;
+            margin-bottom: 35px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#8b5cf6,#6366f1);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo h2 {
+            font-size: 21px;
+        }
+
+        .logo small {
+            display: block;
+            color: #7f879e;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .menu-title {
+            color: #656d83;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin: 20px 12px 10px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            padding: 13px 14px;
+            margin: 5px 0;
+
+            border-radius: 12px;
+
+            color: #9299ad;
+            text-decoration: none;
+
+            transition: 0.2s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(139,92,246,0.15);
+            color: white;
+        }
+
+        .nav-icon {
+            width: 22px;
+            text-align: center;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 25px 30px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 30px;
+        }
+
+        .topbar h1 {
+            font-size: 28px;
+        }
+
+        .topbar p {
+            color: #7f879e;
+            margin-top: 6px;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bell {
+            width: 42px;
+            height: 42px;
+
+            background: #111625;
+            border: 1px solid rgba(255,255,255,0.06);
+
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            background: linear-gradient(135deg,#8b5cf6,#6366f1);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: bold;
+        }
+
+        /* SUMMARY */
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+
+            margin-bottom: 25px;
+        }
+
+        .summary-card {
+            background: #111522;
+
+            border: 1px solid rgba(255,255,255,0.06);
+
+            border-radius: 18px;
+
+            padding: 22px;
+        }
+
+        .summary-card h3 {
+            color: #7f879e;
+            font-size: 13px;
+            font-weight: normal;
+
+            margin-bottom: 8px;
+        }
+
+        .summary-card h2 {
+            font-size: 25px;
+        }
+
+        .summary-icon {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            background: rgba(139,92,246,0.13);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 15px;
+        }
+
+        /* CATEGORY GRID */
+
+        .category-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .category-card {
+            background: #111522;
+
+            border: 1px solid rgba(255,255,255,0.06);
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            transition: 0.2s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-3px);
+
+            border-color: rgba(139,92,246,0.35);
+        }
+
+        .category-top {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 18px;
+        }
+
+        .category-icon {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 14px;
+
+            background: rgba(139,92,246,0.13);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 22px;
+        }
+
+        .category-card h3 {
+            font-size: 16px;
+        }
+
+        .category-card p {
+            color: #747c92;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .amount {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .progress {
+            width: 100%;
+            height: 7px;
+
+            background: #202433;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+
+            background: linear-gradient(
+                90deg,
+                #8b5cf6,
+                #6366f1
+            );
+
+            border-radius: 10px;
+
+            width: 0%;
+        }
+
+        .percentage {
+            display: flex;
+            justify-content: space-between;
+
+            margin-top: 8px;
+
+            color: #737b91;
+            font-size: 12px;
+        }
+
+        .empty {
+            text-align: center;
+
+            padding: 50px 20px;
+
+            color: #737b91;
+
+            background: #111522;
+
+            border: 1px solid rgba(255,255,255,0.06);
+
+            border-radius: 18px;
+        }
+
+        /* MOBILE */
+
+        .mobile-menu {
+            display: none;
+
+            background: #111522;
+
+            border: none;
+
+            color: white;
+
+            padding: 10px 13px;
+
+            border-radius: 10px;
+
+            font-size: 18px;
+
+            margin-bottom: 15px;
+        }
+
+        @media(max-width: 1000px) {
+
+            .summary-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width: 700px) {
+
+            .sidebar {
+                transform: translateX(-100%);
+
+                transition: 0.3s;
+
+                z-index: 100;
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+
+                width: 100%;
+
+                padding: 20px 15px;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile {
+                display: none;
+            }
+
+            .topbar h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">₹</div>
+
+            <div>
+                <h2>ExpenseX</h2>
+                <small>Personal Finance</small>
+            </div>
+
+        </div>
+
+        <div class="menu-title">Main Menu</div>
+
+        <a href="dashboard.html" class="nav-link">
+            <span class="nav-icon">⌂</span>
+            Dashboard
+        </a>
+
+        <a href="expenses.html" class="nav-link">
+            <span class="nav-icon">💸</span>
+            Expenses
+        </a>
+
+        <a href="income.html" class="nav-link">
+            <span class="nav-icon">💰</span>
+            Income
+        </a>
+
+        <a href="budget.html" class="nav-link">
+            <span class="nav-icon">🎯</span>
+            Budget
+        </a>
+
+        <div class="menu-title">Analytics</div>
+
+        <a href="reports.html" class="nav-link">
+            <span class="nav-icon">📊</span>
+            Reports
+        </a>
+
+        <a href="categories.html" class="nav-link active">
+            <span class="nav-icon">🏷️</span>
+            Categories
+        </a>
+
+        <div class="menu-title">Other</div>
+
+        <a href="settings.html" class="nav-link">
+            <span class="nav-icon">⚙️</span>
+            Settings
+        </a>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <button class="mobile-menu" id="mobileMenu">
+            ☰
+        </button>
+
+
+        <div class="topbar">
+
+            <div>
+
+                <h1>Categories 🏷️</h1>
+
+                <p>
+                    Understand where your money is going.
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="bell">
+                    🔔
+                </div>
+
+                <div class="avatar">
+                    T
+                </div>
+
+                <div>
+
+                    <strong>Tejas</strong>
+
+                    <small
+                        style="display:block;color:#737b91;"
+                    >
+                        Personal Account
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="summary-grid">
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    💸
+                </div>
+
+                <h3>
+                    Total Expenses
+                </h3>
+
+                <h2 id="totalExpenses">
+                    ₹0
+                </h2>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🏷️
+                </div>
+
+                <h3>
+                    Categories Used
+                </h3>
+
+                <h2 id="categoryCount">
+                    0
+                </h2>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Average Per Category
+                </h3>
+
+                <h2 id="averageCategory">
+                    ₹0
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- CATEGORY CARDS -->
+
+        <div
+            class="category-grid"
+            id="categoryGrid"
+        ></div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+const API_URL = "http://localhost:3000";
+
+
+// =====================================================
+// CATEGORY ICONS
+// =====================================================
+
+const categoryIcons = {
+
+    "Food & Dining": "🍔",
+    "Transport": "🚗",
+    "Bills": "📄",
+    "Shopping": "🛍️",
+    "Health": "❤️",
+    "Education": "📚",
+    "Entertainment": "🎮",
+    "Other": "📦"
+
+};
+
+
+// =====================================================
+// LOAD CATEGORIES FROM SQLITE
+// =====================================================
+
+async function loadCategories() {
+
+    try {
+
+        const response =
+            await fetch(`${API_URL}/expenses`);
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Could not load expenses"
+            );
+
+        }
+
+
+        const expenses =
+            await response.json();
+
+
+        displayCategories(expenses);
+
+
+    } catch (error) {
+
+        console.error(
+            "Categories loading error:",
+            error
+        );
+
+
+        document.getElementById(
+            "categoryGrid"
+        ).innerHTML = `
+
+            <div class="empty">
+
+                <h3>
+                    Could not load expense data
+                </h3>
+
+                <p style="margin-top:10px;">
+                    Make sure server.js is running.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+// =====================================================
+// DISPLAY CATEGORIES
+// =====================================================
+
+function displayCategories(expenses) {
+
+
+    // ---------------------------------------------
+    // CATEGORY DATA
+    // ---------------------------------------------
+
+    const categories = {};
+
+
+    expenses.forEach(expense => {
+
+        const category =
+            expense.category || "Other";
+
+
+        const amount =
+            Number(expense.amount) || 0;
+
+
+        if (!categories[category]) {
+
+            categories[category] = 0;
+
+        }
+
+
+        categories[category] += amount;
+
+    });
+
+
+    // ---------------------------------------------
+    // TOTAL EXPENSES
+    // ---------------------------------------------
+
+    const totalExpenses =
+        expenses.reduce(
+            (sum, expense) =>
+                sum + Number(expense.amount || 0),
+            0
+        );
+
+
+    // ---------------------------------------------
+    // CATEGORY COUNT
+    // ---------------------------------------------
+
+    const categoryNames =
+        Object.keys(categories);
+
+
+    const categoryCount =
+        categoryNames.length;
+
+
+    // ---------------------------------------------
+    // AVERAGE PER CATEGORY
+    // ---------------------------------------------
+
+    const averageCategory =
+        categoryCount > 0
+            ? totalExpenses / categoryCount
+            : 0;
+
+
+    // ---------------------------------------------
+    // RUPEE FORMAT
+    // ---------------------------------------------
+
+    function rupees(amount) {
+
+        return "₹" +
+            Number(amount || 0)
+                .toLocaleString(
+                    "en-IN",
+                    {
+                        maximumFractionDigits: 0
+                    }
+                );
+
+    }
+
+
+    // ---------------------------------------------
+    // SUMMARY
+    // ---------------------------------------------
+
+    document.getElementById(
+        "totalExpenses"
+    ).textContent =
+        rupees(totalExpenses);
+
+
+    document.getElementById(
+        "categoryCount"
+    ).textContent =
+        categoryCount;
+
+
+    document.getElementById(
+        "averageCategory"
+    ).textContent =
+        rupees(averageCategory);
+
+
+    // ---------------------------------------------
+    // CATEGORY GRID
+    // ---------------------------------------------
+
+    const categoryGrid =
+        document.getElementById(
+            "categoryGrid"
+        );
+
+
+    // No categories
+    if (categoryCount === 0) {
+
+        categoryGrid.innerHTML = `
+
+            <div class="empty">
+
+                <h3>
+                    No expense categories yet
+                </h3>
+
+                <p style="margin-top:10px;">
+                    Add some expenses to see
+                    your spending categories here.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    // ---------------------------------------------
+    // SORT CATEGORIES
+    // ---------------------------------------------
+
+    const sortedCategories =
+        categoryNames.sort(
+            (a, b) =>
+                categories[b] -
+                categories[a]
+        );
+
+
+    // Clear old cards
+    categoryGrid.innerHTML = "";
+
+
+    // ---------------------------------------------
+    // CREATE CATEGORY CARDS
+    // ---------------------------------------------
+
+    sortedCategories.forEach(category => {
+
+
+        const amount =
+            categories[category];
+
+
+        const percentage =
+            totalExpenses > 0
+                ? (amount / totalExpenses) * 100
+                : 0;
+
+
+        const icon =
+            categoryIcons[category] ||
+            "📦";
+
+
+        categoryGrid.innerHTML += `
+
+            <div class="category-card">
+
+                <div class="category-top">
+
+                    <div>
+
+                        <h3>
+                            ${category}
+                        </h3>
+
+                        <p>
+                            ${percentage.toFixed(1)}%
+                            of total spending
+                        </p>
+
+                    </div>
+
+
+                    <div class="category-icon">
+                        ${icon}
+                    </div>
+
+                </div>
+
+
+                <div class="amount">
+                    ${rupees(amount)}
+                </div>
+
+
+                <div class="progress">
+
+                    <div
+                        class="progress-fill"
+                        style="width:${Math.min(
+                            percentage,
+                            100
+                        )}%"
+                    ></div>
+
+                </div>
+
+
+                <div class="percentage">
+
+                    <span>
+                        Spending
+                    </span>
+
+                    <span>
+                        ${percentage.toFixed(1)}%
+                    </span>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+// =====================================================
+// MOBILE MENU
+// =====================================================
+
+document
+    .getElementById("mobileMenu")
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById("sidebar")
+                .classList.toggle("show");
+
+        }
+    );
+
+
+// =====================================================
+// START PAGE
+// =====================================================
+
+loadCategories();
+
+</script>
+</body>
+</html>

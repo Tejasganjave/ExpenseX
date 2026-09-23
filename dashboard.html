@@ -1,0 +1,2571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ExpenseX | Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <!-- Chart.js -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js"
+    ></script>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
+
+        <!-- Brand -->
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ₹
+            </div>
+
+            <div>
+
+                <h2>
+                    Expense<span>X</span>
+                </h2>
+
+                <small>
+                    Personal Finance
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- Main Menu -->
+
+        <div class="menu-title">
+            MAIN MENU
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <a
+                href="dashboard.html"
+                class="menu-item active"
+            >
+
+                <span>⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="expenses.html"
+                class="menu-item"
+            >
+
+                <span>💸</span>
+
+                Expenses
+
+            </a>
+
+
+            <a
+                href="income.html"
+                class="menu-item"
+            >
+
+                <span>💰</span>
+
+                Income
+
+            </a>
+
+
+            <a
+                href="budget.html"
+                class="menu-item"
+            >
+
+                <span>🎯</span>
+
+                Budget
+
+            </a>
+
+
+            <a
+                href="#"
+                class="menu-item"
+            >
+
+                <span>📊</span>
+
+                Reports
+
+            </a>
+
+        </nav>
+
+
+        <!-- Management -->
+
+        <div class="menu-title">
+            MANAGEMENT
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <a
+                href="categories.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">🏷️</span>
+
+                Categories
+
+            </a>
+
+
+            <a
+                href="settings.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">⚙️</span>
+
+                Settings
+
+            </a>
+
+        </nav>
+
+
+        <!-- Bottom -->
+
+        <div class="sidebar-bottom">
+
+            <div class="upgrade-card">
+
+                <div class="upgrade-icon">
+                    ✦
+                </div>
+
+                <h4>
+                    Stay on track
+                </h4>
+
+                <p>
+                    Keep recording your expenses
+                    to understand your spending habits.
+                </p>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main">
+
+
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
+        <header class="topbar">
+
+
+            <div
+                style="
+                    display:flex;
+                    align-items:center;
+                    gap:14px;
+                "
+            >
+
+                <!-- Mobile menu -->
+
+                <button
+                    class="mobile-menu"
+                    id="mobileMenu"
+                    type="button"
+                >
+                    ☰
+                </button>
+
+
+                <div class="welcome">
+
+                    <h1>
+                        Hello sir 👋
+                    </h1>
+
+                    <p>
+                        Here's what's happening with your money today.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="top-actions">
+
+
+                <!-- Notification -->
+
+                <button
+                    class="icon-button"
+                    type="button"
+                    title="Notifications"
+                >
+
+                    🔔
+
+                    <span
+                        class="notification-dot"
+                    ></span>
+
+                </button>
+
+
+
+                <!-- Profile -->
+
+                <div class="profile">
+
+                    <div class="avatar">
+                        T
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong>
+                            MR.Tejas
+                        </strong>
+
+                        <small>
+                            Personal Account
+                        </small>
+
+                    </div>
+
+                    <span class="arrow">
+                        ▾
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             BALANCE HERO
+        ================================================== -->
+
+        <section class="balance-hero">
+
+
+            <div class="balance-content">
+
+                <div class="balance-label">
+
+                    <span class="balance-dot"></span>
+
+                    TOTAL BALANCE
+
+                </div>
+
+
+                <h2>
+
+                    <span>₹</span>
+                    45,250
+
+                </h2>
+
+
+                <div class="balance-change">
+
+                    <span>
+                        ↗ 8.4%
+                    </span>
+
+                    <p>
+                        compared with last month
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Hero Button -->
+
+            <button
+                class="hero-button"
+                type="button"
+                id="addTransactionButton"
+            >
+
+                + Add Transaction
+
+            </button>
+
+
+
+            <!-- Decorative Element -->
+
+            <div class="balance-decoration">
+
+                <div class="circle circle-one"></div>
+
+                <div class="circle circle-two"></div>
+
+                <div class="floating-symbol">
+                    ₹
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             STAT CARDS
+        ================================================== -->
+
+        <section class="stats-grid">
+
+
+            <!-- Income -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon income">
+                        ↗
+                    </div>
+
+                    <div class="stat-percent positive">
+                        +12.5%
+                    </div>
+
+                </div>
+
+
+                <p>
+                    Total Income
+                </p>
+
+                <h3>
+                    ₹60,000
+                </h3>
+
+                <small>
+                    This month
+                </small>
+
+            </div>
+
+
+
+            <!-- Expenses -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon expense">
+                        ↘
+                    </div>
+
+                    <div class="stat-percent negative">
+                        +5.2%
+                    </div>
+
+                </div>
+
+
+                <p>
+                    Total Expenses
+                </p>
+
+                <h3>
+                    ₹14,750
+                </h3>
+
+                <small>
+                    This month
+                </small>
+
+            </div>
+
+
+
+            <!-- Savings -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon saving">
+                        💎
+                    </div>
+
+                    <div class="stat-percent positive">
+                        +8.4%
+                    </div>
+
+                </div>
+
+
+                <p>
+                    Total Savings
+                </p>
+
+                <h3>
+                    ₹45,250
+                </h3>
+
+                <small>
+                    This month
+                </small>
+
+            </div>
+
+
+
+            <!-- Budget -->
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon budget">
+                        🎯
+                    </div>
+
+                    <div class="stat-percent">
+                        65%
+                    </div>
+
+                </div>
+
+
+                <p>
+                    Budget Used
+                </p>
+
+                <h3>
+                    ₹14,750
+                </h3>
+
+                <small>
+                    of ₹22,500 monthly budget
+                </small>
+
+
+                <div class="progress">
+
+                    <div
+                        class="progress-fill"
+                        style="width:65%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ANALYTICS
+        ================================================== -->
+
+        <section class="analytics-grid">
+
+
+            <!-- =================================================
+                 INCOME VS EXPENSE CHART
+            ================================================== -->
+
+            <div class="panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Income vs Expenses
+                        </h3>
+
+                        <p>
+                            Your financial activity
+                            over the last 6 months
+                        </p>
+
+                    </div>
+
+
+                    <select
+                        class="period-select"
+                        id="chartPeriod"
+                    >
+
+                        <option>
+                            Last 6 months
+                        </option>
+
+                        <option>
+                            Last 12 months
+                        </option>
+
+                        <option>
+                            This year
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="chart-wrapper">
+
+                    <canvas
+                        id="incomeExpenseChart"
+                    ></canvas>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 EXPENSE CATEGORIES
+            ================================================== -->
+
+            <div class="panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Expense Categories
+                        </h3>
+
+                        <p>
+                            Where your money goes
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="more-button"
+                        type="button"
+                    >
+                        ⋮
+                    </button>
+
+                </div>
+
+
+
+                <div class="donut-wrapper">
+
+                    <canvas
+                        id="categoryChart"
+                    ></canvas>
+
+
+                    <div class="donut-center">
+
+                        <strong>
+                            ₹14,750
+                        </strong>
+
+                        <span>
+                            Total spent
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="category-list">
+
+
+                    <div class="category-row">
+
+                        <span>
+
+                            <i
+                                class="category-dot food-dot"
+                            ></i>
+
+                            Food & Dining
+
+                        </span>
+
+                        <strong>
+                            ₹4,500
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="category-row">
+
+                        <span>
+
+                            <i
+                                class="category-dot transport-dot"
+                            ></i>
+
+                            Transport
+
+                        </span>
+
+                        <strong>
+                            ₹2,750
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="category-row">
+
+                        <span>
+
+                            <i
+                                class="category-dot bills-dot"
+                            ></i>
+
+                            Bills
+
+                        </span>
+
+                        <strong>
+                            ₹4,000
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="category-row">
+
+                        <span>
+
+                            <i
+                                class="category-dot shopping-dot"
+                            ></i>
+
+                            Shopping
+
+                        </span>
+
+                        <strong>
+                            ₹3,500
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RECENT TRANSACTIONS
+        ================================================== -->
+
+        <section class="panel transactions-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Recent Transactions
+                    </h3>
+
+                    <p>
+                        Your latest income and expenses
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="expenses.html"
+                    class="view-link"
+                >
+                    View all →
+                </a>
+
+            </div>
+
+
+
+            <div class="transactions">
+
+
+                <!-- Food -->
+
+                <div class="transaction">
+
+                    <div
+                        class="transaction-icon food-icon"
+                    >
+                        🍔
+                    </div>
+
+
+                    <div class="transaction-info">
+
+                        <strong>
+                            Lunch at Cafe
+                        </strong>
+
+                        <span>
+                            Food & Dining • Today, 1:30 PM
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="transaction-amount expense-amount"
+                    >
+                        - ₹350
+                    </strong>
+
+                </div>
+
+
+
+                <!-- Transport -->
+
+                <div class="transaction">
+
+                    <div
+                        class="transaction-icon transport-icon"
+                    >
+                        🚕
+                    </div>
+
+
+                    <div class="transaction-info">
+
+                        <strong>
+                            Uber Ride
+                        </strong>
+
+                        <span>
+                            Transport • Today, 10:15 AM
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="transaction-amount expense-amount"
+                    >
+                        - ₹180
+                    </strong>
+
+                </div>
+
+
+
+                <!-- Electricity -->
+
+                <div class="transaction">
+
+                    <div
+                        class="transaction-icon bills-icon"
+                    >
+                        💡
+                    </div>
+
+
+                    <div class="transaction-info">
+
+                        <strong>
+                            Electricity Bill
+                        </strong>
+
+                        <span>
+                            Bills • Yesterday
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="transaction-amount expense-amount"
+                    >
+                        - ₹1,200
+                    </strong>
+
+                </div>
+
+
+
+                <!-- Shopping -->
+
+                <div class="transaction">
+
+                    <div
+                        class="transaction-icon"
+                        style="
+                            background:rgba(247,198,95,0.1);
+                        "
+                    >
+                        🛍️
+                    </div>
+
+
+                    <div class="transaction-info">
+
+                        <strong>
+                            Shopping
+                        </strong>
+
+                        <span>
+                            Shopping • Yesterday
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="transaction-amount expense-amount"
+                    >
+                        - ₹2,350
+                    </strong>
+
+                </div>
+
+
+
+                <!-- Salary -->
+
+                <div class="transaction">
+
+                    <div
+                        class="transaction-icon income-icon"
+                    >
+                        💰
+                    </div>
+
+
+                    <div class="transaction-info">
+
+                        <strong>
+                            Monthly Salary
+                        </strong>
+
+                        <span>
+                            Income • 01 Sep 2026
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="transaction-amount income-amount"
+                    >
+                        + ₹60,000
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     ADD TRANSACTION MODAL
+====================================================== -->
+
+<div
+    class="modal-overlay"
+    id="transactionModal"
+>
+
+
+    <div class="modal">
+
+
+        <button
+            class="modal-close"
+            id="closeModal"
+            type="button"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-icon">
+            +
+        </div>
+
+
+        <h2>
+            Add Transaction
+        </h2>
+
+
+        <p>
+            Choose what you want to add.
+        </p>
+
+
+
+        <div class="quick-buttons">
+
+
+            <a
+                href="add-expense.html"
+                class="quick-expense"
+            >
+
+                <span>
+                    💸
+                </span>
+
+                <div>
+
+                    <strong>
+                        Add Expense
+                    </strong>
+
+                    <small>
+                        Record money you've spent
+                    </small>
+
+                </div>
+
+            </a>
+
+
+
+            <a
+                href="income.html"
+                class="quick-income"
+            >
+
+                <span>
+                    💰
+                </span>
+
+                <div>
+
+                    <strong>
+                        Add Income
+                    </strong>
+
+                    <small>
+                        Record money you've received
+                    </small>
+
+                </div>
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     DASHBOARD JAVASCRIPT
+====================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+    /* =====================================================
+       MOBILE SIDEBAR
+    ====================================================== */
+
+    const mobileMenu =
+        document.getElementById("mobileMenu");
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    if (mobileMenu && sidebar) {
+
+        mobileMenu.addEventListener("click", function () {
+
+            sidebar.classList.toggle("show");
+
+        });
+
+    }
+
+
+    /* =====================================================
+       TRANSACTION MODAL
+    ====================================================== */
+
+    const openButton =
+        document.getElementById("addTransactionButton");
+
+    const modal =
+        document.getElementById("transactionModal");
+
+    const closeButton =
+        document.getElementById("closeModal");
+
+
+    if (openButton && modal) {
+
+        openButton.addEventListener("click", function () {
+
+            modal.classList.add("show");
+
+        });
+
+    }
+
+
+    if (closeButton && modal) {
+
+        closeButton.addEventListener("click", function () {
+
+            modal.classList.remove("show");
+
+        });
+
+    }
+
+
+    if (modal) {
+
+        modal.addEventListener("click", function (event) {
+
+            if (event.target === modal) {
+
+                modal.classList.remove("show");
+
+            }
+
+        });
+
+    }
+
+
+    /* =====================================================
+       GET INCOME FROM LOCAL STORAGE
+       
+       Income will be connected to SQLite separately.
+    ====================================================== */
+
+ let incomeData = [];
+
+try {
+
+    const incomeResponse =
+        await fetch(
+            "http://localhost:3000/income"
+        );
+
+    if (!incomeResponse.ok) {
+
+        throw new Error(
+            "Could not load income"
+        );
+
+    }
+
+    incomeData =
+        await incomeResponse.json();
+
+    console.log(
+        "Income loaded from SQLite:",
+        incomeData
+    );
+
+} catch (error) {
+
+    console.error(
+        "SQLite income loading failed:",
+        error
+    );
+
+    incomeData = [];
+
+}
+
+
+    /* =====================================================
+       GET EXPENSES FROM SQLITE DATABASE
+    ====================================================== */
+
+    let expenseData = [];
+
+
+    try {
+
+        const response =
+            await fetch(
+                "http://localhost:3000/expenses"
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Could not load expenses"
+            );
+
+        }
+
+
+        expenseData =
+            await response.json();
+
+
+        console.log(
+            "Expenses loaded from SQLite:",
+            expenseData
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "SQLite expense loading failed:",
+            error
+        );
+
+
+        /*
+            Fallback to old localStorage data
+            if backend is not running.
+        */
+
+        try {
+
+            expenseData =
+                JSON.parse(
+                    localStorage.getItem(
+                        "expenseXExpenses"
+                    )
+                ) || [];
+
+        } catch (storageError) {
+
+            expenseData = [];
+
+        }
+
+    }
+
+
+    /* =====================================================
+       CALCULATE TOTALS
+    ====================================================== */
+
+    const totalIncome =
+        incomeData.reduce(function (
+            total,
+            item
+        ) {
+
+            return total +
+                Number(item.amount || 0);
+
+        }, 0);
+
+
+    const totalExpenses =
+        expenseData.reduce(function (
+            total,
+            item
+        ) {
+
+            return total +
+                Number(item.amount || 0);
+
+        }, 0);
+
+
+    const balance =
+        totalIncome - totalExpenses;
+
+
+    console.log("Total Income:", totalIncome);
+    console.log("Total Expenses:", totalExpenses);
+    console.log("Balance:", balance);
+
+
+    /* =====================================================
+       FORMAT RUPEES
+    ====================================================== */
+
+    function formatRupees(amount) {
+
+        return "₹" +
+            Number(amount).toLocaleString(
+                "en-IN"
+            );
+
+    }
+
+
+    /* =====================================================
+       UPDATE BALANCE HERO
+    ====================================================== */
+
+    const balanceHero =
+        document.querySelector(
+            ".balance-content h2"
+        );
+
+
+    if (balanceHero) {
+
+        balanceHero.innerHTML =
+            "<span>₹</span>" +
+            Number(balance).toLocaleString(
+                "en-IN"
+            );
+
+    }
+
+
+    /* =====================================================
+       UPDATE STAT CARDS
+    ====================================================== */
+
+    const statCards =
+        document.querySelectorAll(
+            ".stat-card"
+        );
+
+
+    if (statCards.length >= 3) {
+
+
+        /* TOTAL INCOME */
+
+        const incomeHeading =
+            statCards[0].querySelector(
+                "h3"
+            );
+
+
+        if (incomeHeading) {
+
+            incomeHeading.textContent =
+                formatRupees(
+                    totalIncome
+                );
+
+        }
+
+
+        /* TOTAL EXPENSES */
+
+        const expenseHeading =
+            statCards[1].querySelector(
+                "h3"
+            );
+
+
+        if (expenseHeading) {
+
+            expenseHeading.textContent =
+                formatRupees(
+                    totalExpenses
+                );
+
+        }
+
+
+        /* TOTAL SAVINGS */
+
+        const savingHeading =
+            statCards[2].querySelector(
+                "h3"
+            );
+
+
+        if (savingHeading) {
+
+            savingHeading.textContent =
+                formatRupees(
+                    balance
+                );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       UPDATE BUDGET CARD
+    ====================================================== */
+
+    const budgetCard =
+        statCards[3];
+
+
+    if (budgetCard) {
+
+
+        const monthlyBudget =
+            Number(
+                localStorage.getItem(
+                    "monthlyBudget"
+                )
+            ) || 0;
+
+
+        /*
+            IMPORTANT:
+            Expenses now come from SQLite.
+        */
+
+        const currentExpenses =
+            expenseData.reduce(
+                function (
+                    total,
+                    expense
+                ) {
+
+                    return total +
+                        Number(
+                            expense.amount || 0
+                        );
+
+                },
+                0
+            );
+
+
+        let budgetPercentage = 0;
+
+
+        if (monthlyBudget > 0) {
+
+            budgetPercentage =
+                (
+                    currentExpenses /
+                    monthlyBudget
+                ) * 100;
+
+        }
+
+
+        budgetPercentage =
+            Math.min(
+                Math.max(
+                    budgetPercentage,
+                    0
+                ),
+                100
+            );
+
+
+        /* Budget amount */
+
+        const budgetHeading =
+            budgetCard.querySelector(
+                "h3"
+            );
+
+
+        if (budgetHeading) {
+
+            budgetHeading.textContent =
+                formatRupees(
+                    currentExpenses
+                );
+
+        }
+
+
+        /* Percentage */
+
+        const budgetPercent =
+            budgetCard.querySelector(
+                ".stat-percent"
+            );
+
+
+        if (budgetPercent) {
+
+            budgetPercent.textContent =
+                Math.round(
+                    budgetPercentage
+                ) + "%";
+
+        }
+
+
+        /* Progress */
+
+        const progress =
+            budgetCard.querySelector(
+                ".progress-fill"
+            );
+
+
+        if (progress) {
+
+            progress.style.width =
+                budgetPercentage + "%";
+
+        }
+
+
+        /* Bottom text */
+
+        const budgetSmall =
+            budgetCard.querySelector(
+                "small"
+            );
+
+
+        if (budgetSmall) {
+
+            if (monthlyBudget > 0) {
+
+                budgetSmall.textContent =
+                    "of " +
+                    formatRupees(
+                        monthlyBudget
+                    ) +
+                    " monthly budget";
+
+            } else {
+
+                budgetSmall.textContent =
+                    "No monthly budget set";
+
+            }
+
+        }
+
+    }
+
+
+    /* =====================================================
+       EXPENSE CATEGORY DATA
+    ====================================================== */
+
+    const categoryTotals = {};
+
+
+    expenseData.forEach(
+        function (expense) {
+
+            const category =
+                expense.category ||
+                "Other";
+
+
+            const amount =
+                Number(
+                    expense.amount || 0
+                );
+
+
+            if (
+                !categoryTotals[
+                    category
+                ]
+            ) {
+
+                categoryTotals[
+                    category
+                ] = 0;
+
+            }
+
+
+            categoryTotals[
+                category
+            ] += amount;
+
+        }
+    );
+
+
+    const categoryNames =
+        Object.keys(
+            categoryTotals
+        );
+
+
+    const categoryAmounts =
+        Object.values(
+            categoryTotals
+        );
+
+
+    /* =====================================================
+       CATEGORY DONUT CHART
+    ====================================================== */
+
+    const categoryCanvas =
+        document.getElementById(
+            "categoryChart"
+        );
+
+
+    if (categoryCanvas) {
+
+
+        new Chart(
+            categoryCanvas,
+            {
+
+                type: "doughnut",
+
+                data: {
+
+                    labels:
+                        categoryNames.length
+                            ? categoryNames
+                            : ["No Expenses"],
+
+
+                    datasets: [
+
+                        {
+
+                            data:
+                                categoryAmounts.length
+                                    ? categoryAmounts
+                                    : [1],
+
+                            borderWidth: 0,
+
+                            cutout: "72%"
+
+                        }
+
+                    ]
+
+                },
+
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+
+                        legend: {
+
+                            display: false
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       DONUT CENTER TOTAL
+    ====================================================== */
+
+    const donutTotal =
+        document.querySelector(
+            ".donut-center strong"
+        );
+
+
+    if (donutTotal) {
+
+        donutTotal.textContent =
+            formatRupees(
+                totalExpenses
+            );
+
+    }
+
+
+    /* =====================================================
+       CATEGORY LIST
+    ====================================================== */
+
+    const categoryList =
+        document.querySelector(
+            ".category-list"
+        );
+
+
+    if (categoryList) {
+
+
+        categoryList.innerHTML = "";
+
+
+        if (
+            categoryNames.length === 0
+        ) {
+
+            categoryList.innerHTML = `
+
+                <div class="category-row">
+
+                    <span>
+                        No expenses yet
+                    </span>
+
+                    <strong>
+                        ₹0
+                    </strong>
+
+                </div>
+
+            `;
+
+        } else {
+
+
+            categoryNames
+                .sort(
+                    function (a, b) {
+
+                        return (
+                            categoryTotals[b] -
+                            categoryTotals[a]
+                        );
+
+                    }
+                )
+                .slice(0, 5)
+                .forEach(
+                    function (category) {
+
+                        categoryList.innerHTML += `
+
+                            <div class="category-row">
+
+                                <span>
+
+                                    <i
+                                        class="category-dot"
+                                    ></i>
+
+                                    ${escapeHTML(
+                                        category
+                                    )}
+
+                                </span>
+
+
+                                <strong>
+
+                                    ${formatRupees(
+                                        categoryTotals[
+                                            category
+                                        ]
+                                    )}
+
+                                </strong>
+
+                            </div>
+
+                        `;
+
+                    }
+                );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       INCOME VS EXPENSE CHART
+    ====================================================== */
+
+    const incomeExpenseCanvas =
+        document.getElementById(
+            "incomeExpenseChart"
+        );
+
+
+    if (incomeExpenseCanvas) {
+
+
+        const months = [];
+
+        const incomeMonthly = {};
+
+        const expenseMonthly = {};
+
+
+        /* LAST 6 MONTHS */
+
+        for (
+            let i = 5;
+            i >= 0;
+            i--
+        ) {
+
+            const date =
+                new Date();
+
+
+            date.setMonth(
+                date.getMonth() - i
+            );
+
+
+            const key =
+                date.getFullYear() +
+                "-" +
+                String(
+                    date.getMonth() + 1
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            const label =
+                date.toLocaleString(
+                    "en-US",
+                    {
+                        month: "short"
+                    }
+                );
+
+
+            months.push({
+
+                key: key,
+
+                label: label
+
+            });
+
+
+            incomeMonthly[key] = 0;
+
+            expenseMonthly[key] = 0;
+
+        }
+
+
+        /* INCOME BY MONTH */
+
+        incomeData.forEach(
+            function (item) {
+
+                if (!item.date) {
+
+                    return;
+
+                }
+
+
+                const date =
+                    new Date(
+                        item.date
+                    );
+
+
+                const key =
+                    date.getFullYear() +
+                    "-" +
+                    String(
+                        date.getMonth() + 1
+                    ).padStart(
+                        2,
+                        "0"
+                    );
+
+
+                if (
+                    incomeMonthly
+                        .hasOwnProperty(
+                            key
+                        )
+                ) {
+
+                    incomeMonthly[key] +=
+                        Number(
+                            item.amount || 0
+                        );
+
+                }
+
+            }
+        );
+
+
+        /* EXPENSES BY MONTH */
+
+        expenseData.forEach(
+            function (item) {
+
+                if (!item.date) {
+
+                    return;
+
+                }
+
+
+                const date =
+                    new Date(
+                        item.date
+                    );
+
+
+                const key =
+                    date.getFullYear() +
+                    "-" +
+                    String(
+                        date.getMonth() + 1
+                    ).padStart(
+                        2,
+                        "0"
+                    );
+
+
+                if (
+                    expenseMonthly
+                        .hasOwnProperty(
+                            key
+                        )
+                ) {
+
+                    expenseMonthly[key] +=
+                        Number(
+                            item.amount || 0
+                        );
+
+                }
+
+            }
+        );
+
+
+        new Chart(
+            incomeExpenseCanvas,
+            {
+
+                type: "line",
+
+                data: {
+
+                    labels:
+                        months.map(
+                            function (month) {
+
+                                return month.label;
+
+                            }
+                        ),
+
+
+                    datasets: [
+
+                        {
+
+                            label: "Income",
+
+                            data:
+                                months.map(
+                                    function (
+                                        month
+                                    ) {
+
+                                        return incomeMonthly[
+                                            month.key
+                                        ];
+
+                                    }
+                                ),
+
+                            borderWidth: 3,
+
+                            tension: 0.4,
+
+                            fill: false,
+
+                            pointRadius: 3,
+
+                            pointHoverRadius: 6
+
+                        },
+
+
+                        {
+
+                            label: "Expenses",
+
+                            data:
+                                months.map(
+                                    function (
+                                        month
+                                    ) {
+
+                                        return expenseMonthly[
+                                            month.key
+                                        ];
+
+                                    }
+                                ),
+
+                            borderWidth: 3,
+
+                            tension: 0.4,
+
+                            fill: false,
+
+                            pointRadius: 3,
+
+                            pointHoverRadius: 6
+
+                        }
+
+                    ]
+
+                },
+
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+
+                        legend: {
+
+                            position: "bottom",
+
+                            labels: {
+
+                                color: "#858ca3",
+
+                                font: {
+
+                                    size: 10
+
+                                },
+
+                                usePointStyle: true,
+
+                                padding: 20
+
+                            }
+
+                        }
+
+                    },
+
+
+                    scales: {
+
+                        x: {
+
+                            grid: {
+
+                                display: false
+
+                            },
+
+                            ticks: {
+
+                                color: "#555c72",
+
+                                font: {
+
+                                    size: 9
+
+                                }
+
+                            }
+
+                        },
+
+
+                        y: {
+
+                            beginAtZero: true,
+
+                            grid: {
+
+                                color:
+                                    "rgba(255,255,255,0.05)"
+
+                            },
+
+                            ticks: {
+
+                                color: "#555c72",
+
+                                font: {
+
+                                    size: 9
+
+                                },
+
+                                callback:
+                                    function (
+                                        value
+                                    ) {
+
+                                        return "₹" +
+                                            (
+                                                value /
+                                                1000
+                                            ) +
+                                            "k";
+
+                                    }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       RECENT TRANSACTIONS
+    ====================================================== */
+
+    const transactions =
+        document.querySelector(
+            ".transactions"
+        );
+
+
+    if (transactions) {
+
+
+        let allTransactions = [];
+
+
+        /* INCOME */
+
+        incomeData.forEach(
+            function (item) {
+
+                allTransactions.push({
+
+                    type: "income",
+
+                    title:
+                        item.description ||
+                        item.source ||
+                        "Income",
+
+                    category:
+                        item.source ||
+                        "Income",
+
+                    amount:
+                        Number(
+                            item.amount || 0
+                        ),
+
+                    date:
+                        item.date || "",
+
+                    icon: "💰"
+
+                });
+
+            }
+        );
+
+
+        /* EXPENSES FROM SQLITE */
+
+        expenseData.forEach(
+            function (item) {
+
+                allTransactions.push({
+
+                    type: "expense",
+
+                    title:
+                        item.description ||
+                        item.category ||
+                        "Expense",
+
+                    category:
+                        item.category ||
+                        "Expense",
+
+                    amount:
+                        Number(
+                            item.amount || 0
+                        ),
+
+                    date:
+                        item.date || "",
+
+                    icon:
+                        getCategoryIcon(
+                            item.category
+                        )
+
+                });
+
+            }
+        );
+
+
+        /* SORT NEWEST FIRST */
+
+        allTransactions.sort(
+            function (a, b) {
+
+                return (
+                    new Date(b.date) -
+                    new Date(a.date)
+                );
+
+            }
+        );
+
+
+        /* LATEST 5 */
+
+        const recent =
+            allTransactions.slice(
+                0,
+                5
+            );
+
+
+        transactions.innerHTML = "";
+
+
+        if (recent.length === 0) {
+
+
+            transactions.innerHTML = `
+
+                <div class="transaction">
+
+                    <div
+                        class="transaction-icon"
+                    >
+                        💰
+                    </div>
+
+
+                    <div
+                        class="transaction-info"
+                    >
+
+                        <strong>
+                            No transactions yet
+                        </strong>
+
+
+                        <span>
+                            Add your first income or expense.
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="transaction-amount"
+                    >
+                        ₹0
+                    </strong>
+
+                </div>
+
+            `;
+
+
+        } else {
+
+
+            recent.forEach(
+                function (item) {
+
+
+                    const row =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    row.className =
+                        "transaction";
+
+
+                    const icon =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    icon.className =
+                        "transaction-icon";
+
+
+                    icon.textContent =
+                        item.icon;
+
+
+                    const info =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    info.className =
+                        "transaction-info";
+
+
+                    const title =
+                        document.createElement(
+                            "strong"
+                        );
+
+
+                    title.textContent =
+                        item.title;
+
+
+                    const details =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    details.textContent =
+                        item.category +
+                        " • " +
+                        formatDate(
+                            item.date
+                        );
+
+
+                    info.appendChild(
+                        title
+                    );
+
+
+                    info.appendChild(
+                        details
+                    );
+
+
+                    const amount =
+                        document.createElement(
+                            "strong"
+                        );
+
+
+                    amount.className =
+                        "transaction-amount " +
+                        (
+                            item.type === "income"
+                                ? "income-amount"
+                                : "expense-amount"
+                        );
+
+
+                    amount.textContent =
+                        (
+                            item.type === "income"
+                                ? "+ "
+                                : "- "
+                        ) +
+                        formatRupees(
+                            item.amount
+                        );
+
+
+                    row.appendChild(
+                        icon
+                    );
+
+
+                    row.appendChild(
+                        info
+                    );
+
+
+                    row.appendChild(
+                        amount
+                    );
+
+
+                    transactions.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       HELPER FUNCTIONS
+    ====================================================== */
+
+    function formatDate(dateString) {
+
+        if (!dateString) {
+
+            return "No date";
+
+        }
+
+
+        const date =
+            new Date(
+                dateString
+            );
+
+
+        if (
+            isNaN(
+                date.getTime()
+            )
+        ) {
+
+            return dateString;
+
+        }
+
+
+        return date.toLocaleDateString(
+            "en-IN",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+    }
+
+
+    function getCategoryIcon(category) {
+
+        if (!category) {
+
+            return "💸";
+
+        }
+
+
+        const value =
+            category.toLowerCase();
+
+
+        if (
+            value.includes("food") ||
+            value.includes("dining")
+        ) {
+
+            return "🍔";
+
+        }
+
+
+        if (
+            value.includes("transport") ||
+            value.includes("travel")
+        ) {
+
+            return "🚕";
+
+        }
+
+
+        if (
+            value.includes("bill") ||
+            value.includes("electric")
+        ) {
+
+            return "💡";
+
+        }
+
+
+        if (
+            value.includes("shop")
+        ) {
+
+            return "🛍️";
+
+        }
+
+
+        if (
+            value.includes("health") ||
+            value.includes("medical")
+        ) {
+
+            return "🏥";
+
+        }
+
+
+        if (
+            value.includes("education")
+        ) {
+
+            return "📚";
+
+        }
+
+
+        if (
+            value.includes("entertainment")
+        ) {
+
+            return "🎬";
+
+        }
+
+
+        return "💸";
+
+    }
+
+
+    function escapeHTML(value) {
+
+        return String(value)
+
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+
+            .replace(
+                /</g,
+                "&lt;"
+            )
+
+            .replace(
+                />/g,
+                "&gt;"
+            )
+
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+});
+
+</script>
+
+
+</body>
+
+</html>

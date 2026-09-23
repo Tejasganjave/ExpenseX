@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ExpenseX | Budget</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* =====================================================
+           BUDGET PAGE
+        ====================================================== */
+
+        .budget-page {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            margin-bottom: 30px;
+        }
+
+        .page-title .eyebrow {
+            color: #8b7cff;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .page-title h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .page-title p {
+            color: #858ca3;
+            margin-top: 8px;
+        }
+
+
+        /* =====================================================
+           BUDGET GRID
+        ====================================================== */
+
+        .budget-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.4fr)
+                minmax(280px, 0.8fr);
+
+            gap: 24px;
+
+        }
+
+
+        /* =====================================================
+           MAIN BUDGET CARD
+        ====================================================== */
+
+        .budget-card {
+
+            background: #111522;
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.15);
+
+        }
+
+
+        .budget-card-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 28px;
+
+        }
+
+
+        .budget-card-header h2 {
+
+            margin: 0;
+
+            font-size: 22px;
+
+        }
+
+
+        .budget-card-header p {
+
+            margin: 5px 0 0;
+
+            color: #858ca3;
+
+            font-size: 13px;
+
+        }
+
+
+        .budget-icon {
+
+            width: 52px;
+
+            height: 52px;
+
+            border-radius: 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(139,124,255,0.12);
+
+            font-size: 24px;
+
+        }
+
+
+        /* =====================================================
+           BUDGET AMOUNT
+        ====================================================== */
+
+        .budget-amount {
+
+            font-size: 38px;
+
+            font-weight: 800;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .budget-label {
+
+            color: #858ca3;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =====================================================
+           PROGRESS
+        ====================================================== */
+
+        .budget-progress-section {
+
+            margin-top: 30px;
+
+        }
+
+
+        .progress-info {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 10px;
+
+            font-size: 13px;
+
+        }
+
+
+        .progress-info span:first-child {
+            color: #858ca3;
+        }
+
+
+        .progress-info span:last-child {
+            font-weight: 700;
+        }
+
+
+        .budget-progress {
+
+            width: 100%;
+
+            height: 12px;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+        }
+
+
+        .budget-progress-fill {
+
+            height: 100%;
+
+            width: 0%;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #8b5cf6,
+                    #6366f1
+                );
+
+            transition:
+                width 0.5s ease;
+
+        }
+
+
+        .budget-status {
+
+            margin-top: 14px;
+
+            color: #858ca3;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =====================================================
+           STATS
+        ====================================================== */
+
+        .budget-stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin-top: 28px;
+
+        }
+
+
+        .budget-stat {
+
+            background:
+                rgba(255,255,255,0.025);
+
+            border:
+                1px solid rgba(255,255,255,0.06);
+
+            border-radius: 15px;
+
+            padding: 18px;
+
+        }
+
+
+        .budget-stat span {
+
+            color: #858ca3;
+
+            font-size: 12px;
+
+        }
+
+
+        .budget-stat strong {
+
+            display: block;
+
+            margin-top: 7px;
+
+            font-size: 18px;
+
+        }
+
+
+        /* =====================================================
+           SET BUDGET
+        ====================================================== */
+
+        .set-budget-card {
+
+            background: #111522;
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            border-radius: 22px;
+
+            padding: 28px;
+
+        }
+
+
+        .set-budget-card h2 {
+
+            margin: 0 0 7px;
+
+            font-size: 20px;
+
+        }
+
+
+        .set-budget-card p {
+
+            color: #858ca3;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .budget-form {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 16px;
+
+        }
+
+
+        .budget-form label {
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: #c9ccda;
+
+        }
+
+
+        .budget-input-wrapper {
+
+            position: relative;
+
+        }
+
+
+        .budget-input-wrapper span {
+
+            position: absolute;
+
+            left: 14px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #9b8cff;
+
+            font-weight: 700;
+
+        }
+
+
+        .budget-input {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            background: #0b0f1a;
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            color: white;
+
+            border-radius: 12px;
+
+            padding: 14px 14px 14px 35px;
+
+            outline: none;
+
+            font-size: 16px;
+
+        }
+
+
+        .budget-input:focus {
+
+            border-color: #8b7cff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(139,124,255,0.12);
+
+        }
+
+
+        .save-budget-btn {
+
+            border: none;
+
+            border-radius: 12px;
+
+            padding: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8b5cf6,
+                    #6366f1
+                );
+
+            color: white;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+        }
+
+
+        .save-budget-btn:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .budget-message {
+
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(34,197,94,0.1);
+
+            color: #4ade80;
+
+            font-size: 13px;
+
+        }
+
+
+        .budget-message.show {
+            display: block;
+        }
+
+
+        /* =====================================================
+           TIP
+        ====================================================== */
+
+        .budget-tip {
+
+            margin-top: 24px;
+
+            padding: 20px;
+
+            border-radius: 17px;
+
+            background:
+                rgba(139,124,255,0.07);
+
+            border:
+                1px solid rgba(139,124,255,0.12);
+
+        }
+
+
+        .budget-tip h3 {
+
+            margin: 0 0 8px;
+
+            font-size: 15px;
+
+        }
+
+
+        .budget-tip p {
+
+            margin: 0;
+
+            color: #858ca3;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media (max-width: 850px) {
+
+            .budget-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .budget-card,
+            .set-budget-card {
+
+                padding: 22px;
+
+            }
+
+            .budget-stats {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .budget-amount {
+
+                font-size: 30px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ₹
+            </div>
+
+            <div>
+
+                <h2>
+                    Expense<span>X</span>
+                </h2>
+
+                <small>
+                    Personal Finance
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="menu-title">
+            MAIN MENU
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <a
+                href="dashboard.html"
+                class="menu-item"
+            >
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+
+            <a
+                href="expenses.html"
+                class="menu-item"
+            >
+                <span>💸</span>
+                Expenses
+            </a>
+
+
+            <a
+                href="income.html"
+                class="menu-item"
+            >
+                <span>💰</span>
+                Income
+            </a>
+
+
+            <a
+                href="budget.html"
+                class="menu-item active"
+            >
+                <span>🎯</span>
+                Budget
+            </a>
+
+
+            <a
+                href="reports.html"
+                class="nav-link"
+            >
+                <span class="nav-icon">📊</span>
+                Reports
+            </a>
+
+        </nav>
+
+
+        <div class="menu-title">
+            MANAGEMENT
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <a
+                href="categories.html"
+                class="nav-link"
+            >
+                <span class="nav-icon">🏷️</span>
+                Categories
+            </a>
+
+
+            <a
+                href="settings.html"
+                class="nav-link"
+            >
+                <span>⚙️</span>
+                Settings
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="upgrade-card">
+
+                <div class="upgrade-icon">
+                    ✦
+                </div>
+
+                <h4>
+                    Stay on track
+                </h4>
+
+                <p>
+                    Set a monthly budget and
+                    keep your spending under control.
+                </p>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div
+                style="
+                    display:flex;
+                    align-items:center;
+                    gap:14px;
+                "
+            >
+
+                <button
+                    class="mobile-menu"
+                    id="mobileMenu"
+                    type="button"
+                >
+                    ☰
+                </button>
+
+
+                <div class="welcome">
+
+                    <h1>
+                        Budget 🎯
+                    </h1>
+
+                    <p>
+                        Set your budget and manage your monthly spending.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-button"
+                    type="button"
+                >
+                    🔔
+                </button>
+
+
+                <div class="profile">
+
+                    <div class="avatar">
+                        T
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong>
+                            Tejas
+                        </strong>
+
+                        <small>
+                            Personal Account
+                        </small>
+
+                    </div>
+
+                    <span class="arrow">
+                        ▾
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- PAGE -->
+
+        <div class="budget-page">
+
+
+            <div class="page-title">
+
+                <div class="eyebrow">
+                    FINANCIAL PLANNING
+                </div>
+
+                <h1>
+                    Monthly Budget
+                </h1>
+
+                <p>
+                    Track how much you're spending compared with your budget.
+                </p>
+
+            </div>
+
+
+
+            <div class="budget-grid">
+
+
+                <!-- =================================================
+                     CURRENT BUDGET
+                ================================================== -->
+
+                <div class="budget-card">
+
+                    <div class="budget-card-header">
+
+                        <div>
+
+                            <h2>
+                                Current Budget
+                            </h2>
+
+                            <p>
+                                Your monthly spending overview
+                            </p>
+
+                        </div>
+
+
+                        <div class="budget-icon">
+                            🎯
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="budget-amount"
+                        id="budgetAmount"
+                    >
+                        ₹0
+                    </div>
+
+
+                    <div class="budget-label">
+                        Monthly budget
+                    </div>
+
+
+                    <div class="budget-progress-section">
+
+                        <div class="progress-info">
+
+                            <span>
+                                Budget used
+                            </span>
+
+                            <span id="budgetPercentage">
+                                0%
+                            </span>
+
+                        </div>
+
+
+                        <div class="budget-progress">
+
+                            <div
+                                class="budget-progress-fill"
+                                id="budgetProgress"
+                            ></div>
+
+                        </div>
+
+
+                        <div
+                            class="budget-status"
+                            id="budgetStatus"
+                        >
+                            No budget set yet.
+                        </div>
+
+                    </div>
+
+
+                    <div class="budget-stats">
+
+
+                        <div class="budget-stat">
+
+                            <span>
+                                Spent
+                            </span>
+
+                            <strong id="spentAmount">
+                                ₹0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="budget-stat">
+
+                            <span>
+                                Remaining
+                            </span>
+
+                            <strong id="remainingAmount">
+                                ₹0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="budget-stat">
+
+                            <span>
+                                Expenses
+                            </span>
+
+                            <strong id="expenseCount">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SET BUDGET
+                ================================================== -->
+
+                <div>
+
+                    <div class="set-budget-card">
+
+                        <h2>
+                            Set Budget
+                        </h2>
+
+                        <p>
+                            Enter the maximum amount you want
+                            to spend this month.
+                        </p>
+
+
+                        <form
+                            class="budget-form"
+                            id="budgetForm"
+                        >
+
+                            <label for="budgetInput">
+                                Monthly budget
+                            </label>
+
+
+                            <div class="budget-input-wrapper">
+
+                                <span>
+                                    ₹
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="budgetInput"
+                                    class="budget-input"
+                                    placeholder="22500"
+                                    min="1"
+                                    step="1"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="save-budget-btn"
+                            >
+                                Save Budget
+                            </button>
+
+                        </form>
+
+
+                        <div
+                            class="budget-message"
+                            id="budgetMessage"
+                        >
+                            ✓ Budget saved successfully!
+                        </div>
+
+                    </div>
+
+
+                    <div class="budget-tip">
+
+                        <h3>
+                            💡 Budget tip
+                        </h3>
+
+                        <p>
+                            A monthly budget helps you understand
+                            your spending limits and avoid unnecessary
+                            expenses.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+const API_URL = "http://localhost:3000";
+
+let expenses = [];
+let monthlyBudget = 0;
+
+
+// =====================================================
+// FORMAT RUPEES
+// =====================================================
+
+function rupees(amount) {
+
+    return "₹" + Number(amount || 0).toLocaleString("en-IN", {
+        maximumFractionDigits: 0
+    });
+
+}
+
+
+// =====================================================
+// LOAD DATA FROM SQLITE
+// =====================================================
+
+async function loadBudgetPage() {
+
+    try {
+
+        // Load expenses
+        const expenseResponse =
+            await fetch(`${API_URL}/expenses`);
+
+        if (!expenseResponse.ok) {
+            throw new Error("Could not load expenses");
+        }
+
+        expenses =
+            await expenseResponse.json();
+
+
+        // Load budget
+        const budgetResponse =
+            await fetch(`${API_URL}/budget`);
+
+        if (!budgetResponse.ok) {
+            throw new Error("Could not load budget");
+        }
+
+        const budgetData =
+            await budgetResponse.json();
+
+        monthlyBudget =
+            Number(budgetData.amount) || 0;
+
+
+        console.log("Expenses:", expenses);
+        console.log("Budget:", monthlyBudget);
+
+
+        updateBudgetPage();
+
+
+    } catch (error) {
+
+        console.error(
+            "Failed to load budget data:",
+            error
+        );
+
+        alert(
+            "Could not connect to the database. Make sure server.js is running."
+        );
+
+    }
+
+}
+
+
+// =====================================================
+// UPDATE BUDGET PAGE
+// =====================================================
+
+function updateBudgetPage() {
+
+    const totalExpenses =
+        expenses.reduce(
+            (total, expense) =>
+                total + Number(expense.amount || 0),
+            0
+        );
+
+
+    const remaining =
+        monthlyBudget - totalExpenses;
+
+
+    const percentage =
+        monthlyBudget > 0
+            ? (totalExpenses / monthlyBudget) * 100
+            : 0;
+
+
+    // =================================================
+    // CURRENT BUDGET
+    // =================================================
+
+    const budgetAmount =
+        document.getElementById("budgetAmount");
+
+    if (budgetAmount) {
+
+        budgetAmount.textContent =
+            rupees(monthlyBudget);
+
+    }
+
+
+    // =================================================
+    // SPENT
+    // =================================================
+
+    const spentAmount =
+        document.getElementById("spentAmount");
+
+    if (spentAmount) {
+
+        spentAmount.textContent =
+            rupees(totalExpenses);
+
+    }
+
+
+    // =================================================
+    // REMAINING
+    // =================================================
+
+    const remainingAmount =
+        document.getElementById("remainingAmount");
+
+    if (remainingAmount) {
+
+        remainingAmount.textContent =
+            rupees(remaining);
+
+
+        if (remaining < 0) {
+
+            remainingAmount.style.color =
+                "#ef4444";
+
+        } else {
+
+            remainingAmount.style.color =
+                "#22c55e";
+
+        }
+
+    }
+
+
+    // =================================================
+    // EXPENSE COUNT
+    // =================================================
+
+    const expenseCount =
+        document.getElementById("expenseCount");
+
+    if (expenseCount) {
+
+        expenseCount.textContent =
+            expenses.length;
+
+    }
+
+
+    // =================================================
+    // PERCENTAGE
+    // =================================================
+
+    const budgetPercentage =
+        document.getElementById("budgetPercentage");
+
+    if (budgetPercentage) {
+
+        budgetPercentage.textContent =
+            `${Math.round(percentage)}%`;
+
+    }
+
+
+    // =================================================
+    // PROGRESS BAR
+    // =================================================
+
+    const progressBar =
+        document.getElementById("budgetProgress");
+
+    if (progressBar) {
+
+        progressBar.style.width =
+            `${Math.min(percentage, 100)}%`;
+
+    }
+
+
+    // =================================================
+    // STATUS
+    // =================================================
+
+    const budgetStatus =
+        document.getElementById("budgetStatus");
+
+
+    if (budgetStatus) {
+
+        if (monthlyBudget <= 0) {
+
+            budgetStatus.textContent =
+                "No budget set yet.";
+
+        } else if (remaining < 0) {
+
+            budgetStatus.textContent =
+                `You are ${rupees(Math.abs(remaining))} over your budget.`;
+
+            budgetStatus.style.color =
+                "#ef4444";
+
+        } else if (percentage >= 80) {
+
+            budgetStatus.textContent =
+                `You have ${rupees(remaining)} remaining. Budget usage is high.`;
+
+            budgetStatus.style.color =
+                "#f59e0b";
+
+        } else {
+
+            budgetStatus.textContent =
+                `You have ${rupees(remaining)} remaining.`;
+
+            budgetStatus.style.color =
+                "#858ca3";
+
+        }
+
+    }
+
+}
+
+
+// =====================================================
+// SAVE BUDGET
+// =====================================================
+
+const budgetForm =
+    document.getElementById("budgetForm");
+
+
+if (budgetForm) {
+
+    budgetForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const input =
+                document.getElementById("budgetInput");
+
+            const message =
+                document.getElementById("budgetMessage");
+
+
+            const amount =
+                Number(input.value);
+
+
+            // Validate
+            if (!amount || amount <= 0) {
+
+                message.textContent =
+                    "Please enter a valid budget amount.";
+
+                message.style.color =
+                    "#ef4444";
+
+                message.classList.add("show");
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_URL}/budget`,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                amount: amount
+                            })
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Failed to save budget"
+                    );
+
+                }
+
+
+                // Update local page value
+                monthlyBudget = amount;
+
+
+                // Success message
+                message.textContent =
+                    "✓ Budget saved successfully!";
+
+                message.style.color =
+                    "#22c55e";
+
+                message.classList.add("show");
+
+
+                // Clear input
+                input.value = "";
+
+
+                // Update page
+                updateBudgetPage();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Budget save error:",
+                    error
+                );
+
+
+                message.textContent =
+                    "Could not save budget.";
+
+                message.style.color =
+                    "#ef4444";
+
+                message.classList.add("show");
+
+            }
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// MOBILE MENU
+// =====================================================
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+
+if (mobileMenu) {
+
+    mobileMenu.addEventListener(
+        "click",
+        () => {
+
+            const sidebar =
+                document.getElementById("sidebar");
+
+            if (sidebar) {
+
+                sidebar.classList.toggle("show");
+
+            }
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// START
+// =====================================================
+
+loadBudgetPage();
+
+</script>
+
+
+</body>
+
+</html>
