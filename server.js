@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname));
 
 // ===============================
 // DATABASE
@@ -367,7 +368,7 @@ app.post("/budget", (req, res) => {
 // =====================================================
 
 app.get("/", (req, res) => {
-    res.send("Expense Tracker Backend is Running!");
+    res.sendFile(__dirname + "/dashboard.html");
 });
 
 
