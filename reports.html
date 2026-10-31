@@ -597,11 +597,11 @@ async function loadReportData() {
             budgetResponse
         ] = await Promise.all([
 
-            fetch("http://localhost:3000/income"),
+            fetch(""https://expensex-0vsv.onrender.com/income"),
 
-            fetch("http://localhost:3000/expenses"),
+            fetch(""https://expensex-0vsv.onrender.com/expenses"),
 
-            fetch("http://localhost:3000/budget")
+            fetch(""https://expensex-0vsv.onrender.com/budget")
 
         ]);
 
