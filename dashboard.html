@@ -1120,150 +1120,42 @@ document.addEventListener("DOMContentLoaded", async function () {
        Income will be connected to SQLite separately.
     ====================================================== */
 
- let incomeData = [];
+let incomeData = [];
+let expenseData = [];
 
 try {
+    const [incomeResponse, expenseResponse] = await Promise.all([
+        fetch("https://expensex-0vsv.onrender.com/income"),
+        fetch("https://expensex-0vsv.onrender.com/expenses")
+    ]);
 
-    const incomeResponse =
-        await fetch(
-            "https://expensex-0vsv.onrender.com/income"
-        );
-
-    if (!incomeResponse.ok) {
-
-        throw new Error(
-            "Could not load income"
-        );
-
+    if (!incomeResponse.ok || !expenseResponse.ok) {
+        throw new Error("API loading failed");
     }
 
-    incomeData =
-        await incomeResponse.json();
+    incomeData = await incomeResponse.json();
+    expenseData = await expenseResponse.json();
 
-    console.log(
-        "Income loaded from SQLite:",
-        incomeData
-    );
+    console.log("Income:", incomeData);
+    console.log("Expenses:", expenseData);
 
 } catch (error) {
-
-    console.error(
-        "SQLite income loading failed:",
-        error
-    );
-
-    incomeData = [];
-
+    console.error("Dashboard data loading failed:", error);
 }
 
-
-    /* =====================================================
-       GET EXPENSES FROM SQLITE DATABASE
-    ====================================================== */
-
-    let expenseData = [];
-
-
-    try {
-
-        const response =
-            await fetch(
-                "https://expensex-0vsv.onrender.com/expenses"
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Could not load expenses"
-            );
-
-        }
-
-
-        expenseData =
-            await response.json();
-
-
-        console.log(
-            "Expenses loaded from SQLite:",
-            expenseData
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "SQLite expense loading failed:",
-            error
-        );
-
-
-        /*
-            Fallback to old localStorage data
-            if backend is not running.
-        */
-
-        try {
-
-            expenseData =
-                JSON.parse(
-                    localStorage.getItem(
-                        "expenseXExpenses"
-                    )
-                ) || [];
-
-        } catch (storageError) {
-
-            expenseData = [];
-
-        }
-
-    }
-
-
-    /* =====================================================
-       CALCULATE TOTALS
-    ====================================================== */
-
-    const totalIncome =
-        incomeData.reduce(function (
-            total,
-            item
-        ) {
-
-            return total +
-                Number(item.amount || 0);
-
-        }, 0);
-
-
-    const totalExpenses =
-        expenseData.reduce(function (
-            total,
-            item
-        ) {
-
-            return total +
-                Number(item.amount || 0);
-
-        }, 0);
-
-
-    const balance =
-        totalIncome - totalExpenses;
-
-
-    console.log("Total Income:", totalIncome);
-    console.log("Total Expenses:", totalExpenses);
-    console.log("Balance:", balance);
-
-    alert(
-    "Income: ₹" + totalIncome +
-    "\nExpenses: ₹" + totalExpenses +
-    "\nBalance: ₹" + balance
+const totalIncome = incomeData.reduce(
+    (total, item) => total + Number(item.amount || 0), 0
 );
 
+const totalExpenses = expenseData.reduce(
+    (total, item) => total + Number(item.amount || 0), 0
+);
+
+const balance = totalIncome - totalExpenses;
+
+console.log("Total Income:", totalIncome);
+console.log("Total Expenses:", totalExpenses);
+console.log("Balance:", balance);
 
     /* =====================================================
        FORMAT RUPEES
