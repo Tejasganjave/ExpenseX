@@ -591,19 +591,21 @@ async function loadReportData() {
 
     try {
 
-        const [
-            incomeResponse,
-            expenseResponse,
-            budgetResponse
-        ] = await Promise.all([
 
-            fetch(""https://expensex-0vsv.onrender.com/income"),
+const [
+    incomeResponse,
+    expenseResponse,
+    budgetResponse
+] = await Promise.all([
 
-            fetch(""https://expensex-0vsv.onrender.com/expenses"),
+    fetch("https://expensex-0vsv.onrender.com/income"),
 
-            fetch(""https://expensex-0vsv.onrender.com/budget")
+    fetch("https://expensex-0vsv.onrender.com/expenses"),
 
-        ]);
+    fetch("https://expensex-0vsv.onrender.com/budget")
+
+]);
+
 
 
         if (!incomeResponse.ok) {
